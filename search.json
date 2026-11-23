@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome to Policy Lab",
+    "section": "",
+    "text": "Policy Lab publishes personal notes and essays on public policy.\nmake new-post NAME=your-slug\nmake preview\nmake publish"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Policy Lab",
+    "section": "",
+    "text": "Welcome to Policy Lab\n\n1 min\n\n\nmeta\n\n\n\nStarting point for public-policy essays on this Quarto vault.\n\n\n\nNov 23, 2026\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Policy Lab collects personal essays and notes on public policy by Le Tri Nhan.\nRoot hub: personal site.\n\nTech Lab\nEconomic Lab\nFinance"
+  }
+]
