@@ -1,0 +1,27 @@
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem("letrinhan-site-theme");
+    if (t !== "light" && t !== "dark") {
+      t = window.matchMedia("(prefers-color-scheme: light)").matches
+        ? "light"
+        : "dark";
+    }
+    document.documentElement.dataset.theme = t;
+  } catch (e) {
+    document.documentElement.dataset.theme = "dark";
+  }
+
+  try {
+    var l = localStorage.getItem("letrinhan-site-locale");
+    if (l !== "vi" && l !== "en") {
+      l = (navigator.language || "vi").toLowerCase().startsWith("vi")
+        ? "vi"
+        : "en";
+    }
+    document.documentElement.dataset.lang = l;
+  } catch (e) {
+    document.documentElement.dataset.lang = "vi";
+  }
+})();
+</script>

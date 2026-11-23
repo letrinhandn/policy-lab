@@ -1,0 +1,44 @@
+[project]
+name = "economic-lab"
+version = "0.1.0"
+description = "Economic Lab — knowledge vault for economic theory and Quarto essays"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = { text = "MIT" }
+dependencies = [
+    "el-core",
+    "el-lab",
+]
+
+[tool.uv.workspace]
+members = [
+    "packages/el-core",
+    "packages/el-lab",
+]
+
+[tool.uv.sources]
+el-core = { workspace = true }
+el-lab = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.8",
+    "jupyter>=1.0",
+    "matplotlib>=3.8",
+    "numpy>=1.26",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["packages"]
+pythonpath = [
+    "packages/el-core/src",
+    "packages/el-lab/src",
+]

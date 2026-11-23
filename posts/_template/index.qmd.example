@@ -1,0 +1,12 @@
+---
+title: "Những ghi chép về …"
+description: "Những ghi chép ngắn — một dòng cho listing."
+author: "Le Tri Nhan"
+date: today
+categories: [economics]
+draft: true
+---
+
+## Opening
+
+Write the essay here. When ready to publish, set `draft: false`.

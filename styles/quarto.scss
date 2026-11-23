@@ -1,0 +1,1332 @@
+/*-- scss:defaults --*/
+/* Accents: #5e0b15 #90323d #bc8034 #8c7a6b — paper: ivory */
+$burgundy: #5e0b15;
+$burgundy-mid: #90323d;
+$paper: #f7f1ed;
+$paper-raised: #fffdfb;
+$gold: #bc8034;
+$taupe: #8c7a6b;
+$ink: #5e0b15;
+$ink-muted: #8c7a6b;
+$rule: rgba(94, 11, 21, 0.1);
+$rule-strong: rgba(94, 11, 21, 0.16);
+
+$body-bg: $paper;
+$body-color: $ink;
+$link-color: $burgundy-mid;
+$link-hover-color: $burgundy;
+
+$navbar-bg: $burgundy;
+$navbar-fg: $paper;
+$navbar-hl: $gold;
+$navbar-brand-color: $paper;
+$navbar-brand-hover-color: $gold;
+
+$footer-bg: #efe6e1;
+$footer-fg: $taupe;
+$footer-font-size: 0.85rem;
+
+$toc-color: $taupe;
+$toc-active-border: $burgundy-mid;
+$toc-font-size: 0.9rem;
+
+$code-bg: rgba(94, 11, 21, 0.06);
+$code-color: $burgundy;
+$pre-bg: #3a1218;
+
+$border-color: $rule;
+$card-bg: $paper-raised;
+$card-border-color: $rule-strong;
+
+$primary: $burgundy;
+$secondary: $gold;
+$light: $paper;
+$dark: $ink;
+
+$font-family-sans-serif: "Be Vietnam Pro", "Helvetica Neue", system-ui, sans-serif;
+$headings-font-family: "Be Vietnam Pro", "Helvetica Neue", system-ui, sans-serif;
+$headings-font-weight: 650;
+$headings-color: $ink;
+$font-size-base: 0.95rem;
+$line-height-base: 1.65;
+
+/*-- scss:rules --*/
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-feature-settings: "kern", "liga";
+  background: $paper;
+  min-height: 100vh;
+  color: $ink;
+}
+
+/* Shared header — same 3-col grid as hub compact: Tech Economics | avatar | Policy Finance */
+#quarto-header {
+  background: #3a070e;
+  overflow: visible !important;
+}
+
+.navbar {
+  --logo-compact: 40px;
+  --logo-gap: 1.25rem;
+  --nav-gap: 0.65rem;
+  --header-pad-y: 0.55rem;
+  background: #3a070e !important;
+  border-bottom: 3px solid #d9cab3 !important;
+  min-height: calc(var(--logo-compact) + var(--header-pad-y) * 2 + 3px);
+  height: calc(var(--logo-compact) + var(--header-pad-y) * 2 + 3px);
+  padding: var(--header-pad-y) 1rem !important;
+  overflow: visible !important;
+  align-items: center;
+}
+
+.navbar > .container,
+.navbar > .container-fluid,
+.navbar-container.container-fluid {
+  width: min(720px, 100%) !important;
+  max-width: 720px !important;
+  height: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.navbar .navbar-brand,
+.navbar .navbar-brand.navbar-brand-logo {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  max-width: none !important;
+  width: var(--logo-compact) !important;
+  height: var(--logo-compact) !important;
+  line-height: 0;
+}
+
+.navbar .navbar-brand img,
+.navbar .navbar-logo {
+  display: block !important;
+  width: var(--logo-compact) !important;
+  height: var(--logo-compact) !important;
+  max-height: var(--logo-compact) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  object-fit: cover;
+  border: 2px solid #d9cab3;
+  box-shadow: 2px 2px 0 #5e0b15;
+}
+
+.quarto-navbar-tools {
+  display: none !important;
+}
+
+@media (min-width: 992px) {
+  .navbar-toggler {
+    display: none !important;
+  }
+
+  /* Hub-identical geometry: left nav | avatar | right nav */
+  .navbar-container.container-fluid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    column-gap: var(--nav-gap);
+    align-items: center;
+  }
+
+  .navbar .navbar-brand-container,
+  .navbar-brand-container {
+    position: static !important;
+    transform: none !important;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+    width: calc(var(--logo-compact) + var(--logo-gap)) !important;
+    height: var(--logo-compact) !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  /* Collapse children become grid items of the container */
+  .navbar-container #navbarCollapse,
+  .navbar .navbar-collapse {
+    display: contents !important;
+    visibility: visible !important;
+  }
+
+  .navbar-nav.navbar-nav-scroll.me-auto {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0 !important;
+    padding: 0 !important;
+    justify-content: flex-end !important;
+    justify-self: stretch;
+    align-self: center;
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+    gap: 0.35rem 0.55rem;
+  }
+
+  .navbar-nav.navbar-nav-scroll.ms-auto {
+    grid-column: 3;
+    grid-row: 1;
+    margin: 0 !important;
+    padding: 0 !important;
+    justify-content: flex-start !important;
+    justify-self: stretch;
+    align-self: center;
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+    gap: 0.35rem 0.55rem;
+  }
+}
+
+.navbar-nav .nav-link {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-weight: 650;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: rgba(217, 202, 179, 0.88) !important;
+  border: 2px solid transparent;
+  padding: 0.35rem 0.55rem !important;
+  margin: 0;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: $gold !important;
+  border-color: rgba(188, 128, 52, 0.55);
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-item .nav-link[aria-current="page"] {
+  color: $gold !important;
+  border-color: #d9cab3;
+  background: rgba(188, 128, 52, 0.12);
+}
+
+/* Active lab in the shared navigator */
+.navbar-nav .nav-link[href="https://letrinhandn.github.io/policy-lab/"] {
+  color: $gold !important;
+  border-color: #d9cab3;
+  background: rgba(188, 128, 52, 0.12);
+}
+
+@media (max-width: 991.98px) {
+  .navbar {
+    --logo-compact: 36px;
+    --header-pad-y: 0.45rem;
+    height: auto !important;
+    min-height: calc(var(--logo-compact) + var(--header-pad-y) * 2 + 3px);
+    padding: var(--header-pad-y) 0.75rem !important;
+    display: grid !important;
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-areas:
+      "toggler . chips brand"
+      "menu menu menu menu";
+    align-items: center;
+    column-gap: 0.45rem;
+    row-gap: 0;
+  }
+
+  /* Flatten so toggler / brand / menu join the navbar grid with .site-controls */
+  .navbar > .container,
+  .navbar > .container-fluid,
+  .navbar-container.container-fluid {
+    display: contents !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .navbar-toggler {
+    grid-area: toggler;
+    order: 0 !important;
+    width: 2.35rem;
+    height: 2.35rem;
+    padding: 0.3rem !important;
+    margin: 0 !important;
+    border: 2px solid #d9cab3 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar-toggler:focus,
+  .navbar-toggler:focus-visible {
+    box-shadow: none !important;
+    outline: 1px solid $gold;
+  }
+
+  .navbar-toggler-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .site-controls {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    transform: none !important;
+    grid-area: chips;
+    justify-self: end;
+    gap: 0.35rem;
+  }
+
+  .navbar .navbar-brand-container,
+  .navbar-brand-container {
+    grid-area: brand;
+    position: static !important;
+    transform: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: var(--logo-compact) !important;
+    height: var(--logo-compact) !important;
+    max-width: none !important;
+    justify-self: end;
+  }
+
+  #navbarCollapse {
+    display: none !important;
+    grid-area: menu;
+  }
+
+  #navbarCollapse.show {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    margin: 0.55rem 0 0 !important;
+    padding: 0.55rem 0 0.15rem !important;
+    border-top: 1px solid rgba(217, 202, 179, 0.35);
+    gap: 0.15rem;
+  }
+
+  #navbarCollapse .navbar-nav,
+  #navbarCollapse .navbar-nav.me-auto,
+  #navbarCollapse .navbar-nav.ms-auto {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0.1rem;
+  }
+
+  #navbarCollapse .nav-item {
+    width: 100%;
+  }
+
+  #navbarCollapse .nav-link {
+    width: 100%;
+    text-align: left;
+    padding: 0.55rem 0.65rem !important;
+  }
+
+  .quarto-navbar-tools {
+    display: none !important;
+  }
+}
+
+#quarto-content,
+.page-columns {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+/* Let the article column shrink so wide math can scroll instead of spilling */
+.page-columns > .content,
+.page-columns main,
+.page-columns > main.content,
+#quarto-document-content {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Grid children must be allowed to shrink below intrinsic math width */
+.page-columns {
+  overflow-x: clip;
+}
+
+.page-columns > main.content,
+#quarto-content > #quarto-document-content,
+main#quarto-document-content {
+  overflow-x: auto;
+  overflow-y: visible;
+  overscroll-behavior-x: contain;
+}
+
+/* Clear fixed header — Quarto sticky sidebars default to top:0 */
+:root {
+  --lab-header-offset: 6rem; /* >= Quarto's 82px nav-fixed padding */
+}
+
+body.nav-fixed {
+  padding-top: var(--lab-header-offset) !important;
+}
+
+.sidebar.margin-sidebar,
+.sidebar.toc-left,
+#quarto-margin-sidebar.sidebar.margin-sidebar,
+#quarto-margin-sidebar {
+  top: var(--lab-header-offset) !important;
+  padding-top: 1.15rem !important;
+  max-height: calc(100vh - var(--lab-header-offset) - 1.25rem) !important;
+  z-index: 20 !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  /* Hide the OS chrome scrollbar; keep wheel/trackpad scroll */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge */
+}
+
+#quarto-margin-sidebar::-webkit-scrollbar,
+.sidebar.margin-sidebar::-webkit-scrollbar,
+#quarto-margin-sidebar *::-webkit-scrollbar,
+.sidebar.margin-sidebar *::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+#quarto-margin-sidebar *,
+.sidebar.margin-sidebar * {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Quarto sets listing category padding-top: 0 — restore clearance under header */
+#quarto-margin-sidebar .quarto-listing-category {
+  padding-top: 0.35rem !important;
+}
+
+#quarto-margin-sidebar .quarto-listing-category-title,
+#quarto-margin-sidebar #toc-title,
+#quarto-margin-sidebar nav[role="doc-toc"] > h2 {
+  margin-top: 0 !important;
+  padding-top: 0.15rem;
+  scroll-margin-top: calc(var(--lab-header-offset) + 0.75rem);
+}
+
+@media (max-width: 991.98px) {
+  :root {
+    --lab-header-offset: 5.25rem;
+  }
+}
+
+
+/* Listing home: no page title / intro block */
+body:has(.quarto-listing) #title-block-header {
+  display: none !important;
+}
+
+/* Listing home: no heavy paper card wrapper */
+body:has(.quarto-listing) #quarto-document-content {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0.75rem 0 2rem;
+}
+
+body:has(.quarto-listing) #quarto-document-content > p {
+  display: none !important;
+}
+
+body:not(:has(.quarto-listing)) #quarto-document-content {
+  background: $paper-raised;
+  color: $ink;
+  border: 1px solid $rule-strong;
+  box-shadow: none;
+  padding: 1.75rem 1.4rem 2.25rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Long MathJax formulas: scroll inside the article, never over the TOC */
+#quarto-document-content .math.display,
+#quarto-document-content mjx-container[display="true"],
+#quarto-document-content .MathJax_Display,
+#quarto-document-content p > mjx-container[display="true"] {
+  display: block !important;
+  box-sizing: border-box;
+  max-width: 100% !important;
+  width: 100%;
+  overflow-x: auto !important;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.15rem;
+}
+
+#quarto-document-content mjx-container {
+  max-width: 100%;
+  font-size: 0.88em !important;
+}
+
+#quarto-document-content mjx-container[display="true"] > mjx-math {
+  max-width: none; /* allow inner scroll on the container */
+}
+
+/* Keep TOC above any residual math bleed */
+#quarto-margin-sidebar {
+  z-index: 20 !important;
+  isolation: isolate;
+}
+
+html:not([data-theme="dark"]) #quarto-margin-sidebar {
+  background: rgba(247, 241, 237, 0.96);
+}
+
+html[data-theme="dark"] #quarto-margin-sidebar {
+  background: rgba(58, 7, 14, 0.94);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Post body: justified paragraphs */
+#quarto-document-content p,
+main.content p,
+.lang-vi p,
+.lang-en p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+#quarto-document-content li,
+main.content li {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+
+@media (min-width: 992px) {
+  body:not(:has(.quarto-listing)) #quarto-document-content {
+    padding: 2.25rem 2.5rem 2.75rem;
+  }
+}
+
+#title-block-header .title {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2.1vw, 1.55rem);
+  color: $ink;
+  letter-spacing: -0.015em;
+}
+
+#title-block-header .description,
+#title-block-header .quarto-title-meta {
+  color: $ink-muted;
+}
+
+#title-block-header .quarto-categories .quarto-category {
+  border: 1px solid $rule-strong;
+  background: rgba(144, 50, 61, 0.08);
+  color: $burgundy-mid;
+  border-radius: 0;
+  font-weight: 600;
+}
+
+main.content a,
+#quarto-document-content a {
+  color: $burgundy-mid;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+}
+
+main.content a:hover,
+#quarto-document-content a:hover {
+  color: $burgundy;
+}
+
+main.content h1,
+main.content h2,
+main.content h3,
+main.content h4,
+#quarto-document-content h1,
+#quarto-document-content h2,
+#quarto-document-content h3,
+#quarto-document-content h4 {
+  color: $ink;
+  border-bottom-color: $rule;
+  font-family: "Be Vietnam Pro", sans-serif;
+}
+
+main.content blockquote,
+#quarto-document-content blockquote {
+  border-left: 3px solid $gold;
+  background: rgba(188, 128, 52, 0.1);
+  color: darken($taupe, 8%);
+}
+
+main.content code,
+#quarto-document-content code {
+  color: $burgundy;
+  background: rgba(94, 11, 21, 0.06);
+}
+
+main.content pre,
+#quarto-document-content pre {
+  background: $pre-bg;
+  border: 1px solid $rule-strong;
+  box-shadow: none;
+}
+
+main.content pre code,
+#quarto-document-content pre code {
+  color: $paper;
+  background: transparent;
+}
+
+/* Simple essay tables */
+#quarto-document-content table,
+main.content table {
+  width: 100%;
+  margin: 1rem 0 1.35rem;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+#quarto-document-content th,
+#quarto-document-content td,
+main.content th,
+main.content td {
+  border: 1px solid $rule-strong;
+  padding: 0.45rem 0.65rem;
+  vertical-align: middle;
+  text-align: center;
+}
+
+#quarto-document-content thead th,
+main.content thead th {
+  background: rgba(94, 11, 21, 0.06);
+  font-weight: 650;
+}
+
+#quarto-document-content .table-caption,
+#quarto-document-content caption,
+main.content .table-caption,
+main.content caption {
+  caption-side: bottom;
+  text-align: left;
+  color: $ink-muted;
+  font-size: 0.88rem;
+  margin-top: 0.4rem;
+}
+
+main.content figure,
+#quarto-document-content figure,
+.quarto-figure {
+  text-align: center;
+  margin: 1.35rem auto 1.6rem;
+}
+
+main.content figure img,
+#quarto-document-content figure img,
+.quarto-figure img,
+main.content img,
+#quarto-document-content img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid $rule-strong;
+  box-shadow: none;
+  background: #fff;
+}
+
+main.content figcaption,
+#quarto-document-content figcaption,
+.quarto-figure .figure-caption,
+.figure-caption {
+  text-align: center !important;
+  margin-top: 0.55rem;
+  font-size: 0.9rem;
+  color: $ink-muted;
+}
+
+html[data-theme="dark"] main.content figcaption,
+html[data-theme="dark"] #quarto-document-content figcaption,
+html[data-theme="dark"] .quarto-figure .figure-caption,
+html[data-theme="dark"] .figure-caption {
+  color: var(--dm-muted) !important;
+}
+
+#quarto-document-content > p:first-of-type {
+  color: $ink-muted;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+#quarto-document-content > p a {
+  margin-right: 0.85rem;
+}
+
+.listing-actions-group {
+  margin: 1rem 0 1.25rem !important;
+}
+
+.quarto-listing-filter {
+  max-width: 16rem;
+}
+
+.quarto-listing-filter .input-group-text {
+  background: $paper-raised !important;
+  border: 1px solid $rule-strong !important;
+  border-right: 0 !important;
+  border-radius: 0 !important;
+  color: $ink-muted !important;
+}
+
+.quarto-listing-filter .search {
+  background: $paper-raised !important;
+  border: 1px solid $rule-strong !important;
+  border-radius: 0 !important;
+  color: $ink !important;
+  box-shadow: none !important;
+}
+
+.quarto-listing-filter .search::placeholder {
+  color: $ink-muted !important;
+  opacity: 1;
+}
+
+.quarto-listing-filter .search:focus {
+  border-color: $burgundy-mid !important;
+  box-shadow: none !important;
+}
+
+.quarto-listing-category-title {
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $ink-muted !important;
+}
+
+.quarto-listing-category .category {
+  color: $ink-muted !important;
+  border-left: 2px solid transparent;
+  padding-left: 0.55rem;
+}
+
+.quarto-listing-category .category:hover,
+.quarto-listing-category .category.active {
+  color: $burgundy-mid !important;
+  border-left-color: $burgundy-mid;
+}
+
+/* Wide: 2 cards/row; below ~lg: single column (Quarto cols-2 stays 2 until 576px) */
+@media (max-width: 991.98px) {
+  .quarto-listing-cols-2 {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .quarto-listing-cols-2 .quarto-grid-item .card-img,
+  .quarto-listing-cols-2 .quarto-grid-item .listing-image,
+  .quarto-listing-cols-2 .quarto-grid-item img.thumbnail-image,
+  .quarto-listing-cols-2 .quarto-grid-item .card-img-top {
+    height: 180px !important;
+  }
+}
+
+.quarto-grid-item {
+  border: 1px solid $rule-strong !important;
+  background: $paper-raised !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  overflow: hidden;
+  padding: 0 !important;
+  transition: border-color 0.15s ease;
+}
+
+.quarto-grid-item:hover {
+  border-color: $burgundy-mid !important;
+}
+
+.quarto-grid-item .card-img,
+.quarto-grid-item .listing-image,
+.quarto-grid-item img.thumbnail-image,
+.quarto-grid-item .card-img-top {
+  width: 100% !important;
+  height: 220px !important;
+  object-fit: cover !important;
+  object-position: center 35% !important;
+  border: 0 !important;
+  border-bottom: 1px solid $rule-strong !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  background: darken($paper, 6%) !important;
+}
+
+.quarto-grid-item .card-body,
+.quarto-grid-item .listing-body {
+  padding: 1.15rem 1.2rem 1.3rem !important;
+}
+
+.quarto-grid-item .listing-title,
+.quarto-grid-item .card-title {
+  font-family: "Be Vietnam Pro", sans-serif !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  margin: 0 0 0.5rem !important;
+}
+
+.quarto-grid-item .listing-title a,
+.quarto-grid-item .card-title a {
+  color: $ink !important;
+  text-decoration: none !important;
+}
+
+.quarto-grid-item .listing-title a:hover,
+.quarto-grid-item .card-title a:hover {
+  color: $burgundy-mid !important;
+}
+
+.quarto-grid-item .listing-description,
+.quarto-grid-item .card-text {
+  color: $ink-muted !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
+  margin-bottom: 0.8rem !important;
+}
+
+.quarto-grid-item .listing-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.quarto-grid-item .listing-category {
+  display: inline-block;
+  margin: 0 !important;
+  padding: 0.18rem 0.45rem !important;
+  border: 1px solid $rule-strong !important;
+  border-radius: 0 !important;
+  color: $burgundy-mid !important;
+  background: rgba(144, 50, 61, 0.07) !important;
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.quarto-grid-item .listing-date,
+.quarto-grid-item .listing-reading-time,
+.quarto-grid-item .listing-author {
+  color: $ink-muted !important;
+  font-size: 0.82rem !important;
+}
+
+/* Right TOC / quick navigation */
+#quarto-margin-sidebar {
+  min-width: 0;
+}
+
+#quarto-margin-sidebar #toc-title,
+#quarto-margin-sidebar nav[role="doc-toc"] > h2 {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $ink-muted;
+  margin: 0 0 0.65rem;
+}
+
+.sidebar nav[role="doc-toc"] ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.sidebar nav[role="doc-toc"] ul ul {
+  padding-left: 0.75rem;
+  margin-top: 0.2rem;
+}
+
+.sidebar nav[role="doc-toc"] ul a {
+  color: $ink-muted;
+  font-size: 0.84rem;
+  line-height: 1.35;
+  border-left: 2px solid transparent;
+  padding: 0.2rem 0 0.2rem 0.55rem;
+  display: block;
+  text-decoration: none;
+}
+
+.sidebar nav[role="doc-toc"] ul a.active,
+.sidebar nav[role="doc-toc"] ul a:hover {
+  color: $burgundy-mid;
+  border-left-color: $burgundy-mid;
+}
+
+/* When TOC is empty, center the article card instead of leaving a right void */
+body:not(:has(.quarto-listing)):has(#quarto-margin-sidebar:empty) .page-columns,
+body:not(:has(.quarto-listing)):has(#quarto-margin-sidebar:not(:has(nav))) .page-columns {
+  display: flex;
+  justify-content: center;
+}
+
+body:not(:has(.quarto-listing)):has(#quarto-margin-sidebar:empty) #quarto-margin-sidebar,
+body:not(:has(.quarto-listing)):has(#quarto-margin-sidebar:not(:has(nav))) #quarto-margin-sidebar {
+  display: none !important;
+}
+
+body:not(:has(.quarto-listing)):has(#quarto-margin-sidebar:empty) #quarto-document-content,
+body:not(:has(.quarto-listing)):has(#quarto-margin-sidebar:not(:has(nav))) #quarto-document-content {
+  width: min(820px, 100%);
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+::selection {
+  background: rgba(188, 128, 52, 0.35);
+  color: $ink;
+}
+
+body.quarto-light,
+body.quarto-dark,
+body {
+  background: $paper !important;
+  color: $ink !important;
+}
+
+#quarto-content {
+  background: transparent !important;
+}
+
+.navbar {
+  background: #3a070e !important;
+}
+
+/* Header chips — theme + lang (shared with hub) */
+.navbar {
+  position: relative;
+}
+
+.site-controls {
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Desktop: chips float to the right of the centered nav strip */
+@media (min-width: 992px) {
+  .site-controls {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+  }
+}
+
+.header-chip {
+  margin: 0;
+  padding: 0.35rem 0.6rem;
+  min-width: 2.6rem;
+  min-height: 1.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #d9cab3;
+  background: #2a050a;
+  border: 2px solid #d9cab3;
+  cursor: pointer;
+}
+
+.header-chip.is-icon {
+  min-width: 1.85rem;
+  padding: 0.3rem;
+}
+
+.header-chip svg {
+  display: block;
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.header-chip:hover,
+.header-chip:focus-visible {
+  color: $gold;
+  border-color: $gold;
+  outline: none;
+}
+
+/* No site footer — nav in header is enough */
+.nav-footer {
+  display: none !important;
+}
+
+/* Dark mode — same burgundy gradient as hub root */
+html[data-theme="dark"] {
+  --dm-bg: #3a070e;
+  --dm-surface: rgba(58, 7, 14, 0.72);
+  --dm-raised: rgba(94, 11, 21, 0.85);
+  --dm-border: rgba(217, 202, 179, 0.32);
+  --dm-text: #d9cab3;
+  --dm-muted: #8c7a6b;
+  --dm-gold: #bc8034;
+  --dm-mid: #90323d;
+  --burgundy: #5e0b15;
+}
+
+html[data-theme="dark"] body.quarto-light,
+html[data-theme="dark"] body.quarto-dark,
+html[data-theme="dark"] body {
+  position: relative;
+  isolation: isolate;
+  /* Exact hub .site dark background */
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 12%, #90323d 0%, transparent 58%),
+    linear-gradient(180deg, #90323d 0%, #5e0b15 55%, #3a070e 100%) !important;
+  background-attachment: fixed !important;
+  color: var(--dm-text) !important;
+}
+
+/* Soft glyph wash like hub field (CSS-only) */
+html[data-theme="dark"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='140' viewBox='0 0 180 140'%3E%3Ctext x='4' y='18' fill='%23d9cab3' font-family='monospace' font-size='11'%3E%7B%7D%3C/text%3E%3Ctext x='40' y='34' fill='%23d9cab3' font-family='monospace' font-size='11'%3E%24%3C/text%3E%3Ctext x='78' y='22' fill='%23d9cab3' font-family='monospace' font-size='11'%3E%26%3C/text%3E%3Ctext x='118' y='40' fill='%23d9cab3' font-family='monospace' font-size='11'%3E%3C%3E%3C/text%3E%3Ctext x='12' y='68' fill='%23d9cab3' font-family='monospace' font-size='11'%3E%5B%5D%3C/text%3E%3Ctext x='58' y='80' fill='%23d9cab3' font-family='monospace' font-size='11'%3E01%3C/text%3E%3Ctext x='108' y='72' fill='%23d9cab3' font-family='monospace' font-size='11'%3Ex%3C/text%3E%3Ctext x='148' y='88' fill='%23d9cab3' font-family='monospace' font-size='11'%3E%2B%3C/text%3E%3Ctext x='28' y='118' fill='%23d9cab3' font-family='monospace' font-size='11'%3E%2F%2F%3C/text%3E%3Ctext x='88' y='124' fill='%23d9cab3' font-family='monospace' font-size='11'%3E%3D%3E%3C/text%3E%3Ctext x='140' y='112' fill='%23d9cab3' font-family='monospace' font-size='11'%3E*%3C/text%3E%3C/svg%3E");
+  background-size: 180px 140px;
+}
+
+/* Keep #quarto-header position:fixed (headroom) — do not set relative */
+html[data-theme="dark"] #quarto-content,
+html[data-theme="dark"] .page-columns {
+  position: relative;
+  z-index: 1;
+}
+
+html[data-theme="dark"] #quarto-header {
+  z-index: 1030;
+}
+
+html[data-theme="dark"] #quarto-content {
+  background: transparent !important;
+}
+
+html[data-theme="dark"] body:not(:has(.quarto-listing)) #quarto-document-content {
+  background: var(--dm-surface) !important;
+  color: var(--dm-text) !important;
+  border-color: var(--dm-border) !important;
+}
+
+/* Body copy must stay ivory — Bootstrap ink/burgundy was invisible on dark */
+html[data-theme="dark"] #quarto-document-content p,
+html[data-theme="dark"] #quarto-document-content li,
+html[data-theme="dark"] #quarto-document-content td,
+html[data-theme="dark"] #quarto-document-content th,
+html[data-theme="dark"] #quarto-document-content strong,
+html[data-theme="dark"] #quarto-document-content em,
+html[data-theme="dark"] main.content p,
+html[data-theme="dark"] main.content li {
+  color: var(--dm-text) !important;
+}
+
+/* VI / EN post bodies — toggle via html[data-lang] */
+.lang-vi,
+.lang-en {
+  display: none;
+}
+
+html[data-lang="vi"] .lang-vi,
+html:not([data-lang]) .lang-vi {
+  display: block;
+}
+
+html[data-lang="en"] .lang-en {
+  display: block;
+}
+
+
+
+html[data-theme="dark"] #title-block-header .title,
+html[data-theme="dark"] main.content h1,
+html[data-theme="dark"] main.content h2,
+html[data-theme="dark"] main.content h3,
+html[data-theme="dark"] #quarto-document-content h1,
+html[data-theme="dark"] #quarto-document-content h2,
+html[data-theme="dark"] #quarto-document-content h3,
+html[data-theme="dark"] .quarto-grid-item .listing-title,
+html[data-theme="dark"] .quarto-grid-item .card-title,
+html[data-theme="dark"] .quarto-grid-item .listing-title a,
+html[data-theme="dark"] .quarto-grid-item .card-title a {
+  color: var(--dm-text) !important;
+}
+
+html[data-theme="dark"] #title-block-header .description,
+html[data-theme="dark"] .quarto-grid-item .listing-description,
+html[data-theme="dark"] .quarto-grid-item .card-text,
+html[data-theme="dark"] .quarto-grid-item .listing-date,
+html[data-theme="dark"] .quarto-grid-item .listing-reading-time,
+html[data-theme="dark"] .quarto-listing-category-title,
+html[data-theme="dark"] .quarto-listing-category .category,
+html[data-theme="dark"] #quarto-document-content > p:first-of-type {
+  color: var(--dm-muted) !important;
+}
+
+html[data-theme="dark"] .quarto-listing-category .category:hover,
+html[data-theme="dark"] .quarto-listing-category .category.active {
+  color: var(--dm-gold) !important;
+  border-left-color: var(--dm-gold);
+}
+
+html[data-theme="dark"] .quarto-grid-item {
+  background: var(--dm-surface) !important;
+  border-color: var(--dm-border) !important;
+}
+
+html[data-theme="dark"] .quarto-grid-item:hover {
+  border-color: var(--dm-gold) !important;
+}
+
+html[data-theme="dark"] .quarto-grid-item .listing-category {
+  color: var(--dm-gold) !important;
+  border-color: rgba(212, 168, 75, 0.35) !important;
+  background: rgba(212, 168, 75, 0.1) !important;
+}
+
+html[data-theme="dark"] .quarto-grid-item .card-img,
+html[data-theme="dark"] .quarto-grid-item .listing-image,
+html[data-theme="dark"] .quarto-grid-item img.thumbnail-image,
+html[data-theme="dark"] .quarto-grid-item .card-img-top {
+  border-bottom-color: var(--dm-border) !important;
+  background: #0e0406 !important;
+}
+
+html[data-theme="dark"] .quarto-listing-filter .input-group-text {
+  background: rgba(0, 0, 0, 0.28) !important;
+  border: 1px solid var(--dm-border) !important;
+  border-right: 0 !important;
+  color: var(--dm-text) !important;
+}
+
+html[data-theme="dark"] .quarto-listing-filter .search {
+  background: rgba(0, 0, 0, 0.28) !important;
+  border: 1px solid var(--dm-border) !important;
+  color: var(--dm-text) !important;
+}
+
+html[data-theme="dark"] .quarto-listing-filter .search::placeholder {
+  color: rgba(240, 230, 216, 0.55) !important;
+  opacity: 1;
+}
+
+html[data-theme="dark"] .quarto-listing-filter .search:focus {
+  border-color: var(--dm-gold) !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+}
+
+html[data-theme="dark"] main.content a,
+html[data-theme="dark"] #quarto-document-content a {
+  color: var(--dm-gold);
+}
+
+html[data-theme="dark"] main.content a:hover,
+html[data-theme="dark"] #quarto-document-content a:hover {
+  color: #d4a84b;
+}
+
+/* Inline code / meta / tags — burgundy-on-burgundy was invisible */
+html[data-theme="dark"] main.content code,
+html[data-theme="dark"] #quarto-document-content code,
+html[data-theme="dark"] code:not(pre code) {
+  color: #f0e6d8 !important;
+  background: #140408 !important;
+  border: 1px solid rgba(217, 202, 179, 0.32);
+  padding: 0.08em 0.35em;
+  border-radius: 0;
+}
+
+/* Code blocks — burgundy terminal, no light-gray highlight chrome */
+html[data-theme="dark"] {
+  --quarto-hl-ot-color: #f0e6d8;
+  --quarto-hl-at-color: #d4a84b;
+  --quarto-hl-ss-color: #c9a66b;
+  --quarto-hl-an-color: #9a8575;
+  --quarto-hl-fu-color: #d4a84b;
+  --quarto-hl-st-color: #c9a66b;
+  --quarto-hl-cf-color: #e8c07a;
+  --quarto-hl-op-color: #d9cab3;
+  --quarto-hl-er-color: #e8a0a8;
+  --quarto-hl-bn-color: #e8a0a8;
+  --quarto-hl-al-color: #e8a0a8;
+  --quarto-hl-va-color: #f0e6d8;
+  --quarto-hl-bu-color: #d4a84b;
+  --quarto-hl-ex-color: #d4a84b;
+  --quarto-hl-pp-color: #e8a0a8;
+  --quarto-hl-in-color: #9a8575;
+  --quarto-hl-vs-color: #c9a66b;
+  --quarto-hl-wa-color: #9a8575;
+  --quarto-hl-do-color: #9a8575;
+  --quarto-hl-im-color: #d4a84b;
+  --quarto-hl-ch-color: #c9a66b;
+  --quarto-hl-dt-color: #e8a0a8;
+  --quarto-hl-fl-color: #e8a0a8;
+  --quarto-hl-co-color: #9a8575;
+  --quarto-hl-cv-color: #9a8575;
+  --quarto-hl-cn-color: #d4a84b;
+  --quarto-hl-sc-color: #d9cab3;
+  --quarto-hl-dv-color: #e8a0a8;
+  --quarto-hl-kw-color: #e8c07a;
+}
+
+html[data-theme="dark"] div.sourceCode,
+html[data-theme="dark"] div.sourceCode pre.sourceCode,
+html[data-theme="dark"] pre.sourceCode,
+html[data-theme="dark"] pre.code-with-copy,
+html[data-theme="dark"] main.content pre,
+html[data-theme="dark"] #quarto-document-content pre {
+  background: #140408 !important;
+  color: #f0e6d8 !important;
+  border: 1px solid rgba(217, 202, 179, 0.32) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] div.sourceCode pre.sourceCode,
+html[data-theme="dark"] pre.sourceCode code,
+html[data-theme="dark"] main.content pre code,
+html[data-theme="dark"] #quarto-document-content pre code {
+  color: #f0e6d8 !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+
+html[data-theme="dark"] code span,
+html[data-theme="dark"] pre > code.sourceCode > span,
+html[data-theme="dark"] code.sourceCode > span,
+html[data-theme="dark"] div.sourceCode,
+html[data-theme="dark"] div.sourceCode pre.sourceCode {
+  color: #f0e6d8 !important;
+}
+
+html[data-theme="dark"] code span.co,
+html[data-theme="dark"] code span.an,
+html[data-theme="dark"] code span.in,
+html[data-theme="dark"] code span.wa,
+html[data-theme="dark"] code span.do,
+html[data-theme="dark"] code span.cv {
+  color: #9a8575 !important;
+}
+
+html[data-theme="dark"] code span.ex,
+html[data-theme="dark"] code span.fu,
+html[data-theme="dark"] code span.at,
+html[data-theme="dark"] code span.im,
+html[data-theme="dark"] code span.cn {
+  color: #d4a84b !important;
+}
+
+html[data-theme="dark"] code span.kw,
+html[data-theme="dark"] code span.cf,
+html[data-theme="dark"] code span.ot {
+  color: #e8c07a !important;
+}
+
+html[data-theme="dark"] .code-copy-button,
+html[data-theme="dark"] button.code-copy-button {
+  background: transparent !important;
+  color: #d9cab3 !important;
+  border-color: rgba(217, 202, 179, 0.35) !important;
+}
+
+html[data-theme="dark"] .code-copy-button:hover {
+  color: #d4a84b !important;
+  border-color: #d4a84b !important;
+}
+
+html[data-theme="dark"] #title-block-header .quarto-categories .quarto-category,
+html[data-theme="dark"] .quarto-title .quarto-categories .quarto-category {
+  color: var(--dm-gold) !important;
+  border-color: rgba(188, 128, 52, 0.55) !important;
+  background: rgba(188, 128, 52, 0.14) !important;
+}
+
+html[data-theme="dark"] #title-block-header .quarto-title-meta,
+html[data-theme="dark"] #title-block-header .quarto-title-meta-heading,
+html[data-theme="dark"] #title-block-header .quarto-title-meta-contents,
+html[data-theme="dark"] #title-block-header .quarto-title-meta a,
+html[data-theme="dark"] .quarto-title-meta-heading,
+html[data-theme="dark"] .quarto-title-meta-contents {
+  color: var(--dm-muted) !important;
+}
+
+html[data-theme="dark"] #title-block-header .quarto-title-meta-contents a {
+  color: var(--dm-text) !important;
+}
+
+html[data-theme="dark"] main.content blockquote,
+html[data-theme="dark"] #quarto-document-content blockquote {
+  color: var(--dm-text) !important;
+  background: rgba(188, 128, 52, 0.12) !important;
+  border-left-color: var(--dm-gold) !important;
+}
+
+html[data-theme="dark"] main.content table,
+html[data-theme="dark"] #quarto-document-content table,
+html[data-theme="dark"] main.content th,
+html[data-theme="dark"] main.content td,
+html[data-theme="dark"] #quarto-document-content th,
+html[data-theme="dark"] #quarto-document-content td {
+  color: var(--dm-text) !important;
+  border-color: var(--dm-border) !important;
+  text-align: center;
+}
+
+html[data-theme="dark"] main.content th,
+html[data-theme="dark"] #quarto-document-content th {
+  background: rgba(0, 0, 0, 0.28) !important;
+}
+
+html[data-theme="dark"] #quarto-margin-sidebar #toc-title,
+html[data-theme="dark"] #quarto-margin-sidebar nav[role="doc-toc"] > h2 {
+  color: var(--dm-muted) !important;
+}
+
+html[data-theme="dark"] .sidebar nav[role="doc-toc"] ul a {
+  color: var(--dm-muted);
+}
+
+html[data-theme="dark"] .sidebar nav[role="doc-toc"] ul a.active,
+html[data-theme="dark"] .sidebar nav[role="doc-toc"] ul a:hover {
+  color: var(--dm-gold);
+  border-left-color: var(--dm-gold);
+}

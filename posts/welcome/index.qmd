@@ -1,0 +1,16 @@
+---
+title: "Welcome to Policy Lab"
+description: "Starting point for public-policy essays on this Quarto vault."
+author: "Le Tri Nhan"
+date: 2026-11-23
+categories: [meta]
+draft: false
+---
+
+Policy Lab publishes personal notes and essays on public policy.
+
+```bash
+make new-post NAME=your-slug
+make preview
+make publish
+```

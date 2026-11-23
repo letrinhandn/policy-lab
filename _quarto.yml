@@ -1,0 +1,52 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - about.qmd
+    - posts/**/index.qmd
+
+website:
+  title: "Policy Lab"
+  description: "Personal essays and notes on public policy by Le Tri Nhan"
+  site-url: https://letrinhandn.github.io/policy-lab
+  repo-url: https://github.com/letrinhandn/policy-lab
+  favicon: styles/favicon.svg
+  navbar:
+    background: primary
+    foreground: light
+    logo: styles/avatar.jpg
+    logo-alt: "Le Tri Nhan"
+    title: false
+    left:
+      - text: Tech
+        href: https://letrinhandn.github.io/tech-lab/
+      - text: Economics
+        href: https://letrinhandn.github.io/economic-lab/
+    right:
+      - text: Policy
+        href: https://letrinhandn.github.io/policy-lab/
+      - text: Finance
+        href: https://letrinhandn.github.io/investment-research-lab/
+  search: false
+  draft-mode: gone
+
+format:
+  html:
+    theme:
+      - flatly
+      - styles/quarto.scss
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    code-copy: true
+    code-overflow: wrap
+    html-math-method: mathjax
+    link-external-newwindow: true
+    mainfont: "Be Vietnam Pro"
+    respect-user-color-scheme: false
+    include-in-header: styles/theme-boot.html
+    include-after-body: styles/nav-home.html
+
+execute:
+  freeze: auto

@@ -1,0 +1,6 @@
+name: example-post
+status: draft
+domain: general
+channel: quarto
+format: html
+description: Quarto essay
