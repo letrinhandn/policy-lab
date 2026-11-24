@@ -90,6 +90,9 @@ body {
   position: relative !important;
   display: grid !important;
   grid-template-columns: auto 1fr auto !important;
+  /* One row only — brand is absolute and must not create a 2nd track */
+  grid-template-rows: var(--logo-compact) !important;
+  grid-auto-rows: var(--logo-compact) !important;
   align-items: center !important;
   column-gap: 0.75rem !important;
   width: 100% !important;
@@ -102,8 +105,10 @@ body {
 
 .navbar-toggler,
 .lab-menu-btn {
-  grid-column: 1;
-  justify-self: start;
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  justify-self: start !important;
+  align-self: center !important;
   z-index: 5;
   width: 1.85rem !important;
   height: 1.85rem !important;
@@ -120,6 +125,8 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  /* Kill Bootstrap/Quarto order that shoved the toggler onto row 2 */
+  order: 0 !important;
 }
 
 .navbar-toggler:hover,
@@ -153,7 +160,10 @@ body {
   left: 50% !important;
   top: 50% !important;
   transform: translate(-50%, -50%) !important;
-  grid-column: 2;
+  /* Stay out of grid placement entirely (was creating a 2nd row) */
+  grid-column: unset !important;
+  grid-row: unset !important;
+  order: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
   max-width: none !important;
@@ -163,6 +173,7 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 4;
+  pointer-events: auto;
 }
 
 .navbar .navbar-brand,
@@ -206,7 +217,10 @@ body {
 
 .site-controls-header,
 .site-controls {
-  grid-column: 3;
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+  justify-self: end !important;
+  align-self: center !important;
   z-index: 5;
   display: flex !important;
   align-items: center;
@@ -214,6 +228,17 @@ body {
   gap: 0.4rem;
   margin: 0 !important;
   flex-shrink: 0;
+  order: 0 !important;
+}
+
+/* Hidden Quarto chrome must not occupy grid tracks */
+#navbarCollapse,
+.navbar .navbar-collapse,
+.quarto-navbar-tools {
+  display: none !important;
+  grid-column: unset !important;
+  grid-row: unset !important;
+  order: 0 !important;
 }
 
 .header-chip {
@@ -397,29 +422,6 @@ footer.footer {
 .page-columns {
   position: relative;
   z-index: 1;
-  min-width: 0;
-}
-
-/* Let the article column shrink so wide math can scroll instead of spilling */
-.page-columns > .content,
-.page-columns main,
-.page-columns > main.content,
-#quarto-document-content {
-  min-width: 0;
-  max-width: 100%;
-}
-
-/* Grid children must be allowed to shrink below intrinsic math width */
-.page-columns {
-  overflow-x: clip;
-}
-
-.page-columns > main.content,
-#quarto-content > #quarto-document-content,
-main#quarto-document-content {
-  overflow-x: auto;
-  overflow-y: visible;
-  overscroll-behavior-x: contain;
 }
 
 /* Clear fixed header — Quarto sticky sidebars default to top:0 */
@@ -438,27 +440,6 @@ body.nav-fixed {
   top: var(--lab-header-offset) !important;
   padding-top: 1.15rem !important;
   max-height: calc(100vh - var(--lab-header-offset) - 1.25rem) !important;
-  z-index: 20 !important;
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
-  /* Hide the OS chrome scrollbar; keep wheel/trackpad scroll */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* legacy Edge */
-}
-
-#quarto-margin-sidebar::-webkit-scrollbar,
-.sidebar.margin-sidebar::-webkit-scrollbar,
-#quarto-margin-sidebar *::-webkit-scrollbar,
-.sidebar.margin-sidebar *::-webkit-scrollbar {
-  width: 0 !important;
-  height: 0 !important;
-  display: none !important;
-}
-
-#quarto-margin-sidebar *,
-.sidebar.margin-sidebar * {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 
 /* Quarto sets listing category padding-top: 0 — restore clearance under header */
@@ -479,7 +460,6 @@ body.nav-fixed {
     --lab-header-offset: 5.25rem;
   }
 }
-
 
 /* Listing home: no page title / intro block */
 body:has(.quarto-listing) #title-block-header {
@@ -504,49 +484,6 @@ body:not(:has(.quarto-listing)) #quarto-document-content {
   border: 1px solid $rule-strong;
   box-shadow: none;
   padding: 1.75rem 1.4rem 2.25rem;
-  min-width: 0;
-  max-width: 100%;
-  overflow-x: auto;
-}
-
-/* Long MathJax formulas: scroll inside the article, never over the TOC */
-#quarto-document-content .math.display,
-#quarto-document-content mjx-container[display="true"],
-#quarto-document-content .MathJax_Display,
-#quarto-document-content p > mjx-container[display="true"] {
-  display: block !important;
-  box-sizing: border-box;
-  max-width: 100% !important;
-  width: 100%;
-  overflow-x: auto !important;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 0.15rem;
-}
-
-#quarto-document-content mjx-container {
-  max-width: 100%;
-  font-size: 0.88em !important;
-}
-
-#quarto-document-content mjx-container[display="true"] > mjx-math {
-  max-width: none; /* allow inner scroll on the container */
-}
-
-/* Keep TOC above any residual math bleed */
-#quarto-margin-sidebar {
-  z-index: 20 !important;
-  isolation: isolate;
-}
-
-html:not([data-theme="dark"]) #quarto-margin-sidebar {
-  background: rgba(247, 241, 237, 0.96);
-}
-
-html[data-theme="dark"] #quarto-margin-sidebar {
-  background: rgba(58, 7, 14, 0.94);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
 }
 
 /* Post body: justified paragraphs */
@@ -565,7 +502,6 @@ main.content li {
   text-justify: inter-word;
 }
 
-
 @media (min-width: 992px) {
   body:not(:has(.quarto-listing)) #quarto-document-content {
     padding: 2.25rem 2.5rem 2.75rem;
@@ -575,7 +511,7 @@ main.content li {
 #title-block-header .title {
   font-family: "Be Vietnam Pro", sans-serif;
   font-weight: 700;
-  font-size: clamp(1.2rem, 2.1vw, 1.55rem);
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
   color: $ink;
   letter-spacing: -0.015em;
 }
@@ -642,42 +578,6 @@ main.content pre code,
 #quarto-document-content pre code {
   color: $paper;
   background: transparent;
-}
-
-/* Simple essay tables */
-#quarto-document-content table,
-main.content table {
-  width: 100%;
-  margin: 1rem 0 1.35rem;
-  border-collapse: collapse;
-  font-size: 0.92rem;
-}
-
-#quarto-document-content th,
-#quarto-document-content td,
-main.content th,
-main.content td {
-  border: 1px solid $rule-strong;
-  padding: 0.45rem 0.65rem;
-  vertical-align: middle;
-  text-align: center;
-}
-
-#quarto-document-content thead th,
-main.content thead th {
-  background: rgba(94, 11, 21, 0.06);
-  font-weight: 650;
-}
-
-#quarto-document-content .table-caption,
-#quarto-document-content caption,
-main.content .table-caption,
-main.content caption {
-  caption-side: bottom;
-  text-align: left;
-  color: $ink-muted;
-  font-size: 0.88rem;
-  margin-top: 0.4rem;
 }
 
 main.content figure,
