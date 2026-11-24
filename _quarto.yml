@@ -26,8 +26,8 @@ website:
     right:
       - text: Policy
         href: https://letrinhandn.github.io/policy-lab/
-      - text: Finance
-        href: https://letrinhandn.github.io/investment-research-lab/
+      - text: Philosophy
+        href: https://letrinhandn.github.io/philosophy-lab/
   search: false
   draft-mode: gone
 

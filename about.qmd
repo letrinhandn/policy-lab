@@ -8,4 +8,4 @@ Root hub: [personal site](https://letrinhandn.github.io/letrinhan-site/).
 
 - [Tech Lab](https://letrinhandn.github.io/tech-lab/)
 - [Economic Lab](https://letrinhandn.github.io/economic-lab/)
-- [Finance](https://letrinhandn.github.io/investment-research-lab/)
+- [Philosophy Lab](https://letrinhandn.github.io/philosophy-lab/)
